@@ -1,0 +1,29 @@
+li {
+    margin-bottom: 8px;
+}
+
+form {
+    margin: 0;
+}
+
+.MainBlock form {
+    margin-left: 8px;
+}
+
+.TaskListBlock {
+    width: fit-content;
+    border: 1px solid black;
+}
+
+.MainBlock,
+.TaskListBlock-Heading,
+.TaskListBlock-Create,
+.TaskBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.TaskListBlock-Create {
+    margin-left: 8px;
+}

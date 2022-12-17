@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/static/styles.css">
+
+<div class="MainBlock">
+    <h1> Добавить новый список задач </h1>
+
+    <form action="/createTaskList" method="post">
+        <input type="text" name="text" placeholder="название списка" required>
+        <input type="submit">
+    </form>
+</div>
+
+<ul>
+
+<% for (todo of todos) { %>
+    <li class="TaskListBlock">
+        <div class="TaskListBlock-Heading">
+            <h2><%= todo.taskListTitle.text %></h2>
+            <form action="/deleteTaskList" method="POST">
+                <button type="submit" name="taskListId" value="<%= todo.taskListId %>">
+                    Удалить
+                </button>
+            </form>
+            <form class="TaskListBlock-Create" action="/createTask" method="POST">
+                <input type="text" name="taskTitle" required>
+                <button type="submit" name="taskListId" value="<%= todo.taskListId %>">
+                    создать задачу
+                </button>
+            </form>
+        </div>
+        <div>
+            <% for (task of todo.taskList) { %>
+                <div class="TaskBlock">
+                    <h3><%= task.taskTitle %></h3>
+                    <form action="/updateTaskStatus" method="POST">
+                        <input type="hidden" name="taskListId" value="<%= todo.taskListId %>">
+                        <input type="hidden" name="taskId" value="<%= task.taskId %>">
+                        <input type="checkbox" name="taskDone" value='true' <%= task.taskDone === true ? 'checked' : '' %> onclick="this.form.submit();"/>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </li>
+<% } %>
+</ul>
